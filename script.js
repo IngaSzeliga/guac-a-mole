@@ -3,9 +3,8 @@ const scoreBoard = document.querySelector(".score");
 const avocados = document.querySelectorAll(".avocado");
 //Save the last bowl to prevent the same bowl 2 times in a row
 let lastBowl;
-let timeUp = false;
-let score = 0;
 let isGameStarted = false;
+let score = 0;
 
 function randomTime(min, max) {
   return Math.round(Math.random() * (max - min) + min);
@@ -29,7 +28,7 @@ function popUp() {
   bowl.classList.add("up");
   setTimeout(() => {
     bowl.classList.remove("up");
-    if (!timeUp) popUp();
+    if (isGameStarted) popUp();
   }, time);
 }
 
@@ -37,10 +36,11 @@ function startGame() {
   if (isGameStarted === false) {
     isGameStarted = true;
     scoreBoard.textContent = 0;
-    timeUp = false;
     score = 0;
     popUp();
-    setTimeout(() => (timeUp = true), 30000);
+    setTimeout(() => {
+      isGameStarted = false;
+    }, 10000);
   }
 }
 
