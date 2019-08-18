@@ -28,7 +28,9 @@ function popUp() {
   bowl.classList.add("up");
   setTimeout(() => {
     bowl.classList.remove("up");
-    if (isGameStarted) popUp();
+    if (isGameStarted) {
+      popUp();
+    }
   }, time);
 }
 
@@ -45,7 +47,9 @@ function startGame() {
 }
 
 function hit(event) {
-  if (!event.isTrusted) return;
+  if (!event.isTrusted) {
+    return;
+  }
   score++;
   this.classList.remove("up");
   scoreBoard.textContent = score;
